@@ -1,0 +1,99 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Resize</title>
+<style type="text/css" media="all">
+body{
+    background: #eee;
+    font-size:100%;
+    line-height:1.125em; /* 16x1.125=18px */
+    text-rendering: optimizeLegibility;
+    -webkit-appearance: caret;
+    -webkit-font-smoothing: antialiased;
+}
+.wrapper{
+    background: #fff;
+    height: 41.5em;
+    width: 80em;
+}
+header{
+    background: #ff8877;
+    color: #fff;
+    padding: 1em;
+}
+header p{
+    font-size: 2em;
+    line-height: 1.2em;
+}
+footer{
+    background: #ffccaa;
+    padding: 1em;
+}
+ul{
+    list-style-type: none;
+    overflow: hidden;
+    width: 100%;
+}
+li{
+    border: 1px solid #ff00aa;
+    display: block;
+    height: 4em;
+    float: left;
+    margin: 0 1em;
+    width: 10em;
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+    <header>
+        <p>
+        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.
+
+        Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean dignissim pellentesque felis.
+
+        Morbi in sem quis dui placerat ornare. Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu. Cras consequat.
+
+        Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus.
+        </p>
+    </header>
+    <ul>
+        <li>test</li>
+        <li>test</li>
+        <li>test</li>
+        <li>test</li>
+    </ul>
+    <footer>
+        <p>
+        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.
+
+        Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean dignissim pellentesque felis.
+        </p>
+    </footer>
+</div>
+<script type="text/javascript" charset="utf-8">
+var resize = function () {
+    var width = document.body.clientWidth - 1280, // 1280/16 = 80, aka the width of the wrapper
+    height = document.body.clientHeight - 664,
+    size;
+    if (width < height) {
+        size = document.body.clientWidth * 100 / 1280;
+    } else {
+        size = document.body.clientHeight * 100 / 664;
+    }
+    if (size < 40) {
+        size = 40;
+    }
+    console.log('resized');
+    document.body.style.fontSize = size - size % 1 +'%';
+};
+var timer;
+var smartResize = function () {
+    clearInterval(timer);
+    timer = setInterval(function(){resize(); clearInterval(timer);},500);
+};
+window.addEventListener('resize',smartResize);
+window.addEventListener('load',resize);
+</script>
+</body>
+</html>
